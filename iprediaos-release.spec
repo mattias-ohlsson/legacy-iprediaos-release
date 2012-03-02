@@ -1,13 +1,13 @@
-%define release_name Generic
-%define dist_version 16
+%define release_name IprediaOS
+%define dist_version 1
 
-Summary:	Generic release files
-Name:		generic-release
-Version:	16
-Release:	0.1
+Summary:	IprediaOS release files
+Name:		iprediaos-release
+Version:	1.0.0
+Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Base
-Source:		%{name}-%{version}.tar.gz
+Source:		%{name}-%{version}.tar.bz2
 Obsoletes:	redhat-release
 Provides:	redhat-release = %{version}-%{release}
 Provides:	system-release = %{version}-%{release}
@@ -16,10 +16,8 @@ BuildArch:	noarch
 Conflicts:	fedora-release
 
 %description
-Generic release files such as yum configs and various /etc/ files that
-define the release. This package explicitly is a replacement for the 
-trademarked release package, if you are unable for any reason to abide by the 
-trademark restrictions on that release package.
+IprediaOS release files such as yum configs and various /etc/ files that
+define the release.
 
 %package rawhide
 Summary:        Rawhide repo definitions
@@ -37,11 +35,7 @@ Provides:	system-release-notes = %{version}-%{release}
 Conflicts:	fedora-release-notes
 
 %description notes
-Generic release notes package. This package explicitly is a replacement 
-for the trademarked release-notes package, if you are unable for any reason
-to abide by the trademark restrictions on that release-notes 
-package. Please note that there is no actual useful content here.
-
+Generic release notes package.
 
 %prep
 %setup -q
@@ -121,6 +115,9 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) /etc/yum.repos.d/fedora-rawhide.repo
 
 %changelog
+* Fri Mar 2 2012 Mattias Ohlsson <mattias.ohlsson@inprose.com> - 1.0.0-1
+- Forked from generic-release
+
 * Fri May 13 2011 Tom Callaway <spot@fedoraproject.org> - 16-0.1
 - initial 16
 
