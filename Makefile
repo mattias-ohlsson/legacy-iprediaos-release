@@ -1,23 +1,26 @@
-VERSION=$(shell awk '/Version/ { print $$2 }' generic-release.spec)
+NAME = generic-logos
+XML = backgrounds/desktop-backgrounds-fedora.xml
 
-CVSROOT = $(shell cat CVS/Root 2>/dev/null || :)
+all: bootloader/fedora.icns
 
-CVSTAG = V$(subst .,-,$(VERSION))
+VERSION := $(shell awk '/Version:/ { print $$2 }' $(NAME).spec)
+RELEASE := $(shell awk '/Release:/ { print $$2 }' $(NAME).spec | sed 's|%{?dist}||g')
+TAG=$(NAME)-$(VERSION)-$(RELEASE)
 
-all:
+bootloader/fedora.icns: pixmaps/fedora-logo-small.png
+	png2icns bootloader/fedora.icns pixmaps/fedora-logo-small.png
 
-tag-archive:
-	@cvs -Q tag -F $(CVSTAG)
+tag:
+	@git tag -a -f -m "Tag as $(TAG)" -f $(TAG)
+	@echo "Tagged as $(TAG)"
 
-create-archive:
-	@rm -rf /tmp/fedora-release
-	@cd /tmp ; cvs -Q -d $(CVSROOT) export -r$(CVSTAG) generic-release || echo "Um... export aborted."
-	@mv /tmp/generic-release /tmp/generic-release-$(VERSION)
-	@cd /tmp ; tar -czSpf generic-release-$(VERSION).tar.gz generic-release-$(VERSION)
-	@rm -rf /tmp/generic-release-$(VERSION)
-	@cp /tmp/generic-release-$(VERSION).tar.gz .
-	@rm -f /tmp/generic-release-$(VERSION).tar.gz
-	@echo ""
-	@echo "The final archive is in generic-release-$(VERSION).tar.gz"
+archive: tag
+	@git archive --format=tar --prefix=$(NAME)-$(VERSION)/ HEAD > $(NAME)-$(VERSION).tar
+	@bzip2 -f $(NAME)-$(VERSION).tar
+	@echo "$(NAME)-$(VERSION).tar.bz2 created" 
+	@sha1sum $(NAME)-$(VERSION).tar.bz2 > $(NAME)-$(VERSION).sha1sum 
+	@scp $(NAME)-$(VERSION).tar.bz2 $(NAME)-$(VERSION).sha1sum fedorahosted.org:$(NAME) || scp $(NAME)-$(VERSION).tar.bz2 $(NAME)-$(VERSION).sha1sum fedorahosted.org:/srv/web/releases/g/e/generic-logos/
+	@echo "Everything done, files uploaded to Fedorahosted.org" 
 
-archive: tag-archive create-archive
+clean:
+	rm -f *~ *bz2 bootloader/fedora.icns
