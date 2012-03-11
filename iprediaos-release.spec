@@ -99,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %config %attr(0644,root,root) /etc/system-release-cpe
 %dir /etc/yum.repos.d
 %config(noreplace) /etc/yum.repos.d/iprediaos.repo
-%config(noreplace) /etc/yum.repos.d/fedora-updates*.repo
+%config(noreplace) /etc/yum.repos.d/iprediaos-updates*.repo
 %config(noreplace) %attr(0644,root,root) /etc/issue
 %config(noreplace) %attr(0644,root,root) /etc/issue.net
 %config %attr(0644,root,root) /etc/rpm/macros.dist
