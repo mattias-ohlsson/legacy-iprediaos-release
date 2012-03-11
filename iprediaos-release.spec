@@ -73,7 +73,7 @@ done
 popd
 
 install -d -m 755 $RPM_BUILD_ROOT/etc/yum.repos.d
-for file in fedora*repo ; do
+for file in iprediaos*repo ; do
   install -m 644 $file $RPM_BUILD_ROOT/etc/yum.repos.d
 done
 
@@ -82,9 +82,9 @@ install -d -m 755 $RPM_BUILD_ROOT/etc/rpm
 cat >> $RPM_BUILD_ROOT/etc/rpm/macros.dist << EOF
 # dist macros.
 
-%%fedora		%{dist_version}
-%%dist		.fc%{dist_version}
-%%fc%{dist_version}		1
+%%iprediaos		%{dist_version}
+%%dist		.ipos%{dist_version}
+%%ipos%{dist_version}		1
 EOF
 
 %clean
@@ -98,7 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 /etc/system-release
 %config %attr(0644,root,root) /etc/system-release-cpe
 %dir /etc/yum.repos.d
-%config(noreplace) /etc/yum.repos.d/fedora.repo
+%config(noreplace) /etc/yum.repos.d/iprediaos.repo
 %config(noreplace) /etc/yum.repos.d/fedora-updates*.repo
 %config(noreplace) %attr(0644,root,root) /etc/issue
 %config(noreplace) %attr(0644,root,root) /etc/issue.net
