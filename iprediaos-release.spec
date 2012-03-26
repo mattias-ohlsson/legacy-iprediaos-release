@@ -112,7 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files rawhide
 %defattr(-,root,root,-)
-%config(noreplace) /etc/yum.repos.d/fedora-rawhide.repo
+%config(noreplace) /etc/yum.repos.d/iprediaos-rawhide.repo
 
 %changelog
 * Fri Mar 2 2012 Mattias Ohlsson <mattias.ohlsson@inprose.com> - 1.0.0-1
