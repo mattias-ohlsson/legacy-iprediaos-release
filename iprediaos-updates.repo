@@ -2,7 +2,7 @@
 name=IprediaOS $releasever - $basearch - Updates
 failovermethod=priority
 baseurl=http://download.ipredia.org/pub/iprediaos/linux/updates/$releasever/$basearch/
-mirrorlist=https://mirrors.ipredia.org/metalink?repo=updates-released-f$releasever&arch=$basearch
+#mirrorlist=https://mirrors.ipredia.org/metalink?repo=updates-released-f$releasever&arch=$basearch
 enabled=1
 gpgcheck=0
 #gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$basearch
@@ -11,7 +11,7 @@ gpgcheck=0
 name=IprediaOS $releasever - $basearch - Updates - Debug
 failovermethod=priority
 baseurl=http://download.ipredia.org/pub/iprediaos/linux/updates/$releasever/$basearch/debug/
-mirrorlist=https://mirrors.ipredia.org/metalink?repo=updates-released-debug-f$releasever&arch=$basearch
+#mirrorlist=https://mirrors.ipredia.org/metalink?repo=updates-released-debug-f$releasever&arch=$basearch
 enabled=0
 gpgcheck=0
 #gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$basearch
@@ -20,7 +20,7 @@ gpgcheck=0
 name=IprediaOS $releasever - Updates Source
 failovermethod=priority
 baseurl=http://download.ipredia.org/pub/iprediaos/linux/updates/$releasever/SRPMS/
-mirrorlist=https://mirrors.ipredia.org/metalink?repo=updates-released-source-f$releasever&arch=$basearch
+#mirrorlist=https://mirrors.ipredia.org/metalink?repo=updates-released-source-f$releasever&arch=$basearch
 enabled=0
 gpgcheck=0
 #gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$basearch
