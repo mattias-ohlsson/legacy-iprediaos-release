@@ -1,9 +1,9 @@
-%define release_name IprediaOS
+%define release_name Winston
 %define dist_version 1
 
 Summary:	IprediaOS release files
 Name:		iprediaos-release
-Version:	1.0.0
+Version:	1
 Release:	1%{?dist}
 License:	GPLv2
 Group:		System Environment/Base
@@ -45,8 +45,8 @@ Generic release notes package.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc
-echo "Generic release %{version} (%{release_name})" > $RPM_BUILD_ROOT/etc/fedora-release
-echo "cpe://o:generic:generic:%{version}" > $RPM_BUILD_ROOT/etc/system-release-cpe
+echo "IprediaOS release %{version} (%{release_name})" > $RPM_BUILD_ROOT/etc/fedora-release
+echo "cpe://o:ipredia:iprediaos:%{version}" > $RPM_BUILD_ROOT/etc/system-release-cpe
 cp -p $RPM_BUILD_ROOT/etc/fedora-release $RPM_BUILD_ROOT/etc/issue
 echo "Kernel \r on an \m (\l)" >> $RPM_BUILD_ROOT/etc/issue
 cp -p $RPM_BUILD_ROOT/etc/issue $RPM_BUILD_ROOT/etc/issue.net
